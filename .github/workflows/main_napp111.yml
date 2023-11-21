@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'napp111'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6D7920B03EE446E9A4A7B190DB5C151B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CC8AC142B97F43B9A8D0179A4CC97534 }}
