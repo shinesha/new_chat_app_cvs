@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import styles from "./Layout.module.css";
-import Azure from "../../assets/Azure.svg";
+import Fujitsu_logo from "../../assets/Fujitsu-Logo.svg";
 import { CopyRegular, ShareRegular } from "@fluentui/react-icons";
 import { CommandBarButton, Dialog, Stack, TextField, ICommandBarStyles, IButtonStyles, DefaultButton  } from "@fluentui/react";
 import { useContext, useEffect, useState } from "react";
@@ -19,7 +19,7 @@ const shareButtonStyles: ICommandBarStyles & IButtonStyles = {
       padding: '5px 12px',
       marginRight: '20px'
     },
-    icon: {s
+    icon: {
       color: '#FFFFFF',
     },
     rootHovered: {
@@ -69,12 +69,10 @@ const Layout = () => {
     return (
         <div className={styles.layout}>
             <header className={styles.header} role={"banner"}>
-                <Stack horizontal verticalAlign="center" horizontalAlign="space-between"
-                // className={styles.headerContainer}
-                >
+                <Stack horizontal verticalAlign="center" horizontalAlign="space-between">
                     <Stack horizontal verticalAlign="center">
                         <img
-                            src={Azure}
+                            src={Fujitsu_logo}
                             className={styles.headerIcon}
                             aria-hidden="true"
                         />

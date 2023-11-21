@@ -9,8 +9,8 @@ import uuid from 'react-uuid';
 import { isEmpty } from "lodash-es";
 
 import styles from "./Chat.module.css";
-import Azure from "../../assets/Azure.svg";
-import Az from "../../assets/Az.jpg";
+import fujitsu_banner from "../../assets/fujitsu-banner.jpg";
+
 
 import {
     ChatMessage,
@@ -572,7 +572,7 @@ const Chat = () => {
                         {!messages || messages.length < 1 ? (
                             <Stack className={styles.chatEmptyState}>
                                 <img
-                                    src={Az}
+                                    src={fujitsu_banner}
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
@@ -647,7 +647,7 @@ const Chat = () => {
                                         },
                                         root: {
                                             color: '#FFFFFF',
-                                            background: "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)"
+                                            background: "#E60012"
                                         },
                                         rootDisabled: {
                                             background: "#BDBDBD"
@@ -667,7 +667,7 @@ const Chat = () => {
                                         },
                                         root: {
                                             color: '#FFFFFF',
-                                            background: disabledButton() ? "#BDBDBD" : "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)",
+                                            background: disabledButton() ? "#BDBDBD" : "#E60012",
                                             cursor: disabledButton() ? "" : "pointer"
                                         },
                                     }}
@@ -676,6 +676,7 @@ const Chat = () => {
                                     onClick={appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured ? clearChat : newChat}
                                     disabled={disabledButton()}
                                     aria-label="clear chat button"
+                                    title="Clear Chat"
                                 />
                                 <Dialog
                                     hidden={hideErrorDialog}
@@ -761,6 +762,6 @@ export default Chat; */}
 )}
 </div>
 );
-
+        }
 export default Chat;
 
