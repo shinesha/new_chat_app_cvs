@@ -6,11 +6,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from "rehype-raw";
 import uuid from 'react-uuid';
-import { isEmpty } from "lodash-es";
+import { isEmpty, values } from "lodash-es";
 
 import styles from "./Chat.module.css";
-import fujitsu_banner from "../../assets/fujitsu-banner.jpg";
-
+import fujitsu_banner from "../../assets/fujitsu-banner.jpg"
+import promptQuestionListRaw from "../../assets/prompt-questions-list.json"
 
 import {
     ChatMessage,
@@ -28,11 +28,13 @@ import {
     CosmosDBStatus,
     ErrorMessage
 } from "../../api";
+
 import { Answer } from "../../components/Answer";
 import { QuestionInput } from "../../components/QuestionInput";
 import { ChatHistoryPanel } from "../../components/ChatHistory/ChatHistoryPanel";
 import { AppStateContext } from "../../state/AppProvider";
 import { useBoolean } from "@fluentui/react-hooks";
+import { PromptQuestions } from "../../components/PromptQuestion/PromptQuestion";
 
 const enum messageStatus {
     NotRunning = "Not Running",
@@ -54,6 +56,7 @@ const Chat = () => {
     const [clearingChat, setClearingChat] = useState<boolean>(false);
     const [hideErrorDialog, { toggle: toggleErrorDialog }] = useBoolean(true);
     const [errorMsg, setErrorMsg] = useState<ErrorMessage | null>()
+    const [promptQuestionList, setPromptQuestionList] = useState<any>(promptQuestionListRaw)
 
     const errorDialogContentProps = {
         type: DialogType.close,
@@ -576,8 +579,20 @@ const Chat = () => {
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
+                                <h2 className={styles.chatEmptyStateSubtitle}>Decision Intelligence Knowledge Centre</h2>
+
+                                {Object.values(promptQuestionList).map((value: any ) => ( 
+                                    //this is a super hacky way of doing it but 
+                                    <PromptQuestions 
+                                        question={value[0]}
+                                        onSend={(question, id) => {
+                                            appStateContext?.state.isCosmosDBAvailable?.cosmosDB ? makeApiRequestWithCosmosDB(question, id) : makeApiRequestWithoutCosmosDB(question, id)
+                                        }}
+                                        conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
+                                    />
+                                ))
+                                }
+                                
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px"}} role="log">
