@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./PromptQuestions.module.css";
+import styles from "./PromptQuestion.module.css"
 
 interface Props {
     question: string;
@@ -19,6 +19,6 @@ export const PromptQuestions = (props: Props) => {
     }
 
     return(
-        <button onClick={() => handlePromptClick()}>{question}</button>
+        <button className={styles.buttonsss} onClick={() => handlePromptClick()}>{question}</button>
     )
 };

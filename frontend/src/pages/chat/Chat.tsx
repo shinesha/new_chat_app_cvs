@@ -532,10 +532,11 @@ const Chat = () => {
     };
 
     const onViewSource = (citation: Citation) => {
-        if (citation.url && !citation.url.includes("blob.core")) {
+        if (citation.url) {
             window.open(citation.url, "_blank");
         }
     };
+
 
     const parseCitationFromMessage = (message: ChatMessage) => {
         if (message?.role && message?.role === "tool") {
@@ -579,20 +580,22 @@ const Chat = () => {
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h2 className={styles.chatEmptyStateSubtitle}>Decision Intelligence Knowledge Centre</h2>
-
-                                {Object.values(promptQuestionList).map((value: any ) => ( 
-                                    //this is a super hacky way of doing it but 
-                                    <PromptQuestions 
-                                        question={value[0]}
-                                        onSend={(question, id) => {
-                                            appStateContext?.state.isCosmosDBAvailable?.cosmosDB ? makeApiRequestWithCosmosDB(question, id) : makeApiRequestWithoutCosmosDB(question, id)
-                                        }}
-                                        conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
-                                    />
-                                ))
-                                }
-                                
+                                <h1 className={styles.chatEmptyStateTitle}>Decision Intelligence Knowledge Centre</h1>
+                                <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions below </h2>
+            
+                                <div className={styles.promptQuestionContainer}>
+                                    {Object.values(promptQuestionList).map((value: any ) => ( 
+                                        //this is a super hacky way of doing it but we can fix it later
+                                        <PromptQuestions 
+                                            question={value[Math.floor(Math.random()*value.length)]}
+                                            onSend={(question, id) => {
+                                                appStateContext?.state.isCosmosDBAvailable?.cosmosDB ? makeApiRequestWithCosmosDB(question, id) : makeApiRequestWithoutCosmosDB(question, id)
+                                            }}
+                                            conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
+                                        />
+                                    ))
+                                    }
+                                </div>
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px"}} role="log">
@@ -711,35 +714,8 @@ const Chat = () => {
                                 conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
                             />
                         </Stack>
+                        <p className={styles.footerDocuments}>Documents in Database: 500</p>
                     </div>
-                    {/* Citation Panel */}
-                    {/* {messages && messages.length > 0 && isCitationPanelOpen && activeCitation && ( 
-                    <Stack.Item className={styles.citationPanel} tabIndex={0} role="tabpanel" aria-label="Citations Panel">
-                        <Stack aria-label="Citations Panel Header Container" horizontal className={styles.citationPanelHeaderContainer} horizontalAlign="space-between" verticalAlign="center">
-                            <span aria-label="Citations" className={styles.citationPanelHeader}>Citations</span>
-                            <IconButton iconProps={{ iconName: 'Cancel'}} aria-label="Close citations panel" onClick={() => setIsCitationPanelOpen(false)}/>
-                        </Stack>
-                        <h5 className={styles.citationPanelTitle} tabIndex={0} title={activeCitation.url && !activeCitation.url.includes("blob.core") ? activeCitation.url : activeCitation.title ?? ""} onClick={() => onViewSource(activeCitation)}>{activeCitation.title}</h5>
-                        <div tabIndex={0}> 
-                        <ReactMarkdown 
-                            linkTarget="_blank"
-                            className={styles.citationPanelContent}
-                            children={activeCitation.content} 
-                            remarkPlugins={[remarkGfm]} 
-                            rehypePlugins={[rehypeRaw]}
-                        />
-                        </div>
-                    </Stack.Item>
-                )}
-                {(appStateContext?.state.isChatHistoryOpen && appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured) && <ChatHistoryPanel/>}
-                </Stack>
-            )}
-        </div>
-    );
-};
-
-export default Chat; */}
-
 {/* Citation Panel */}
 {messages && messages.length > 0 && isCitationPanelOpen && activeCitation && ( 
     <Stack.Item className={styles.citationPanel} tabIndex={0} role="tabpanel" aria-label="Citations Panel">
@@ -748,15 +724,6 @@ export default Chat; */}
             <IconButton iconProps={{ iconName: 'Cancel'}} aria-label="Close citations panel" onClick={() => setIsCitationPanelOpen(false)}/>
         </Stack>
         <h5 className={styles.citationPanelTitle} tabIndex={0} title={activeCitation.url && !activeCitation.url.includes("blob.core") ? activeCitation.url : activeCitation.title ?? ""}>{activeCitation.title}</h5>
-        <div tabIndex={0}> 
-            <ReactMarkdown 
-                linkTarget="_blank"
-                className={styles.citationPanelContent}
-                children={activeCitation.content} 
-                remarkPlugins={[remarkGfm]} 
-                rehypePlugins={[rehypeRaw]}
-            />
-        </div>
         {activeCitation.url && (
             <span 
                 title={activeCitation.url} 
@@ -770,6 +737,15 @@ export default Chat; */}
                 View Source
             </span>
         )}
+        <div tabIndex={0}> 
+            <ReactMarkdown 
+                linkTarget="_blank"
+                className={styles.citationPanelContent}
+                children={activeCitation.content} 
+                remarkPlugins={[remarkGfm]} 
+                rehypePlugins={[rehypeRaw]}
+            />
+        </div>
     </Stack.Item>
 )}
 {(appStateContext?.state.isChatHistoryOpen && appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured) && <ChatHistoryPanel/>}
