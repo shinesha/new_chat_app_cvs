@@ -580,7 +580,7 @@ const Chat = () => {
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Decision Intelligence Knowledge Centre</h1>
+                                <h1 className={styles.chatEmptyStateTitle}>FIND</h1>
                                 <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions below </h2>
             
                                 <div className={styles.promptQuestionContainer}>
