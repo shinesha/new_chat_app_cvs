@@ -6,11 +6,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from "rehype-raw";
 import uuid from 'react-uuid';
-import { isEmpty } from "lodash-es";
+import { isEmpty, values } from "lodash-es";
 
 import styles from "./Chat.module.css";
-import Azure from "../../assets/Azure.svg";
-import Az from "../../assets/Az.jpg";
+import fujitsu_banner from "../../assets/fujitsu-banner.jpg"
+import promptQuestionListRaw from "../../assets/prompt-questions-list.json"
 
 import {
     ChatMessage,
@@ -28,11 +28,13 @@ import {
     CosmosDBStatus,
     ErrorMessage
 } from "../../api";
+
 import { Answer } from "../../components/Answer";
 import { QuestionInput } from "../../components/QuestionInput";
 import { ChatHistoryPanel } from "../../components/ChatHistory/ChatHistoryPanel";
 import { AppStateContext } from "../../state/AppProvider";
 import { useBoolean } from "@fluentui/react-hooks";
+import { PromptQuestions } from "../../components/PromptQuestion/PromptQuestion";
 
 const enum messageStatus {
     NotRunning = "Not Running",
@@ -54,6 +56,7 @@ const Chat = () => {
     const [clearingChat, setClearingChat] = useState<boolean>(false);
     const [hideErrorDialog, { toggle: toggleErrorDialog }] = useBoolean(true);
     const [errorMsg, setErrorMsg] = useState<ErrorMessage | null>()
+    const [promptQuestionList, setPromptQuestionList] = useState<any>(promptQuestionListRaw)
 
     const errorDialogContentProps = {
         type: DialogType.close,
@@ -529,10 +532,11 @@ const Chat = () => {
     };
 
     const onViewSource = (citation: Citation) => {
-        if (citation.url && !citation.url.includes("blob.core")) {
+        if (citation.url) {
             window.open(citation.url, "_blank");
         }
     };
+
 
     const parseCitationFromMessage = (message: ChatMessage) => {
         if (message?.role && message?.role === "tool") {
@@ -572,12 +576,26 @@ const Chat = () => {
                         {!messages || messages.length < 1 ? (
                             <Stack className={styles.chatEmptyState}>
                                 <img
-                                    src={Az}
+                                    src={fujitsu_banner}
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
+                                <h1 className={styles.chatEmptyStateTitle}>Decision Intelligence Knowledge Centre</h1>
+                                <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions below </h2>
+            
+                                <div className={styles.promptQuestionContainer}>
+                                    {Object.values(promptQuestionList).map((value: any ) => ( 
+                                        //this is a super hacky way of doing it but we can fix it later
+                                        <PromptQuestions 
+                                            question={value[Math.floor(Math.random()*value.length)]}
+                                            onSend={(question, id) => {
+                                                appStateContext?.state.isCosmosDBAvailable?.cosmosDB ? makeApiRequestWithCosmosDB(question, id) : makeApiRequestWithoutCosmosDB(question, id)
+                                            }}
+                                            conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
+                                        />
+                                    ))
+                                    }
+                                </div>
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px"}} role="log">
@@ -647,7 +665,7 @@ const Chat = () => {
                                         },
                                         root: {
                                             color: '#FFFFFF',
-                                            background: "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)"
+                                            background: "#E60012"
                                         },
                                         rootDisabled: {
                                             background: "#BDBDBD"
@@ -667,7 +685,7 @@ const Chat = () => {
                                         },
                                         root: {
                                             color: '#FFFFFF',
-                                            background: disabledButton() ? "#BDBDBD" : "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)",
+                                            background: disabledButton() ? "#BDBDBD" : "#E60012",
                                             cursor: disabledButton() ? "" : "pointer"
                                         },
                                     }}
@@ -676,6 +694,7 @@ const Chat = () => {
                                     onClick={appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured ? clearChat : newChat}
                                     disabled={disabledButton()}
                                     aria-label="clear chat button"
+                                    title="Clear Chat"
                                 />
                                 <Dialog
                                     hidden={hideErrorDialog}
@@ -695,35 +714,8 @@ const Chat = () => {
                                 conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
                             />
                         </Stack>
+                        <p className={styles.footerDocuments}>Documents in Database: 500</p>
                     </div>
-                    {/* Citation Panel */}
-                    {/* {messages && messages.length > 0 && isCitationPanelOpen && activeCitation && ( 
-                    <Stack.Item className={styles.citationPanel} tabIndex={0} role="tabpanel" aria-label="Citations Panel">
-                        <Stack aria-label="Citations Panel Header Container" horizontal className={styles.citationPanelHeaderContainer} horizontalAlign="space-between" verticalAlign="center">
-                            <span aria-label="Citations" className={styles.citationPanelHeader}>Citations</span>
-                            <IconButton iconProps={{ iconName: 'Cancel'}} aria-label="Close citations panel" onClick={() => setIsCitationPanelOpen(false)}/>
-                        </Stack>
-                        <h5 className={styles.citationPanelTitle} tabIndex={0} title={activeCitation.url && !activeCitation.url.includes("blob.core") ? activeCitation.url : activeCitation.title ?? ""} onClick={() => onViewSource(activeCitation)}>{activeCitation.title}</h5>
-                        <div tabIndex={0}> 
-                        <ReactMarkdown 
-                            linkTarget="_blank"
-                            className={styles.citationPanelContent}
-                            children={activeCitation.content} 
-                            remarkPlugins={[remarkGfm]} 
-                            rehypePlugins={[rehypeRaw]}
-                        />
-                        </div>
-                    </Stack.Item>
-                )}
-                {(appStateContext?.state.isChatHistoryOpen && appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured) && <ChatHistoryPanel/>}
-                </Stack>
-            )}
-        </div>
-    );
-};
-
-export default Chat; */}
-
 {/* Citation Panel */}
 {messages && messages.length > 0 && isCitationPanelOpen && activeCitation && ( 
     <Stack.Item className={styles.citationPanel} tabIndex={0} role="tabpanel" aria-label="Citations Panel">
@@ -732,15 +724,6 @@ export default Chat; */}
             <IconButton iconProps={{ iconName: 'Cancel'}} aria-label="Close citations panel" onClick={() => setIsCitationPanelOpen(false)}/>
         </Stack>
         <h5 className={styles.citationPanelTitle} tabIndex={0} title={activeCitation.url && !activeCitation.url.includes("blob.core") ? activeCitation.url : activeCitation.title ?? ""}>{activeCitation.title}</h5>
-        <div tabIndex={0}> 
-            <ReactMarkdown 
-                linkTarget="_blank"
-                className={styles.citationPanelContent}
-                children={activeCitation.content} 
-                remarkPlugins={[remarkGfm]} 
-                rehypePlugins={[rehypeRaw]}
-            />
-        </div>
         {activeCitation.url && (
             <span 
                 title={activeCitation.url} 
@@ -754,6 +737,15 @@ export default Chat; */}
                 View Source
             </span>
         )}
+        <div tabIndex={0}> 
+            <ReactMarkdown 
+                linkTarget="_blank"
+                className={styles.citationPanelContent}
+                children={activeCitation.content} 
+                remarkPlugins={[remarkGfm]} 
+                rehypePlugins={[rehypeRaw]}
+            />
+        </div>
     </Stack.Item>
 )}
 {(appStateContext?.state.isChatHistoryOpen && appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured) && <ChatHistoryPanel/>}
@@ -761,6 +753,6 @@ export default Chat; */}
 )}
 </div>
 );
-
+        }
 export default Chat;
 
