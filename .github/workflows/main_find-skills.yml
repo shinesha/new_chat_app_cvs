@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'Find-Skills'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_88D028E4C1AA4E02935B72CB0A31D063 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_285B2083E1A04C09AE85DC18E2F43E06 }}
