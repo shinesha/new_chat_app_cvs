@@ -117,7 +117,7 @@ const Chat = () => {
             assistantMessage.content = assistantContent
         }
 
-        if (resultMessage.role === TOOL) toolMessage = resultMessage
+        iff (resultMessage.role === TOOL) toolMessage = resultMessage
 
         if (!conversationId) {
             isEmpty(toolMessage) ?
@@ -542,9 +542,10 @@ const Chat = () => {
     // };
 
 
-const keyVaultName = "<Your Key Vault Name>";
-const secretName = "<Your Secret Name>";
-const keyVaultUrl = `https://${keyVaultName}.vault.azure.net`;
+const keyVaultName = "keyVaultOpen";
+const secretName = "shinesha";
+const keyVaultUrl = "https://keyvaultopen.vault.azure.net";
+
 
 const onViewSource = async (citation: Citation) => {
     try {
