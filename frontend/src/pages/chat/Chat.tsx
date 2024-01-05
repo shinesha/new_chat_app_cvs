@@ -36,6 +36,10 @@ import { AppStateContext } from "../../state/AppProvider";
 import { useBoolean } from "@fluentui/react-hooks";
 import { PromptQuestions } from "../../components/PromptQuestion/PromptQuestion";
 
+
+import { SecretClient } from "@azure/keyvault-secrets";
+import { DefaultAzureCredential } from "@azure/identity";
+
 const enum messageStatus {
     NotRunning = "Not Running",
     Processing = "Processing",
@@ -531,11 +535,37 @@ const Chat = () => {
         setIsCitationPanelOpen(true);
     };
 
-    const onViewSource = (citation: Citation) => {
+    // const onViewSource = (citation: Citation) => {
+    //     if (citation.url) {
+    //         window.open(citation.url, "_blank");
+    //     }
+    // };
+
+
+const keyVaultName = "<Your Key Vault Name>";
+const secretName = "<Your Secret Name>";
+const keyVaultUrl = `https://${keyVaultName}.vault.azure.net`;
+
+const onViewSource = async (citation: Citation) => {
+    try {
         if (citation.url) {
-            window.open(citation.url, "_blank");
+            const credential = new DefaultAzureCredential();
+            const secretClient = new SecretClient(keyVaultUrl, credential);
+
+            // Retrieve the secret from Key Vault
+            const secret = await secretClient.getSecret(secretName);
+
+            // Append the secret value to the URL
+            const urlWithKey = `${citation.url}?${secret.value}`;
+            
+            // Open the URL in a new window
+            window.open(urlWithKey, "_blank");
         }
-    };
+    } catch (error) {
+        console.error("Error retrieving secret from Key Vault:", error.message);
+    }
+};
+
 
 
     const parseCitationFromMessage = (message: ChatMessage) => {
