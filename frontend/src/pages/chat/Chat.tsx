@@ -542,30 +542,30 @@ const Chat = () => {
     // };
 
 
-const keyVaultName = "keyVaultOpen";
-const secretName = "shinesha";
-const keyVaultUrl = "https://keyvaultopen.vault.azure.net";
+    const keyVaultName = "keyVaultOpen";
+    const secretName = "shinesha";
+    const keyVaultUrl = "https://keyvaultopen.vault.azure.net";
 
 
-const onViewSource = async (citation: Citation) => {
-    try {
-        if (citation.url) {
-            const credential = new DefaultAzureCredential();
-            const secretClient = new SecretClient(keyVaultUrl, credential);
+    const onViewSource = async (citation: Citation) => {
+        try {
+            if (citation.url) {
+                const credential = new DefaultAzureCredential();
+                const secretClient = new SecretClient(keyVaultUrl, credential);
 
-            // Retrieve the secret from Key Vault
-            const secret = await secretClient.getSecret(secretName);
+                // Retrieve the secret from Key Vault
+                const secret = await secretClient.getSecret(secretName);
 
-            // Append the secret value to the URL
-            const urlWithKey = `${citation.url}?${secret.value}`;
-            
-            // Open the URL in a new window
-            window.open(urlWithKey, "_blank");
+                // Append the secret value to the URL
+                const urlWithKey = `${citation.url}?${secret.value}`;
+                
+                // Open the URL in a new window
+                window.open(urlWithKey, "_blank");
+            }
+        } catch (error) {
+            console.error("Error retrieving secret from Key Vault:");
         }
-    } catch (error) {
-        console.error("Error retrieving secret from Key Vault:", error.message);
-    }
-};
+    };
 
 
 
