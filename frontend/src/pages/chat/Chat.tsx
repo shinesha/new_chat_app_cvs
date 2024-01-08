@@ -117,7 +117,7 @@ const Chat = () => {
             assistantMessage.content = assistantContent
         }
 
-        iff (resultMessage.role === TOOL) toolMessage = resultMessage
+        if (resultMessage.role === TOOL) toolMessage = resultMessage
 
         if (!conversationId) {
             isEmpty(toolMessage) ?
