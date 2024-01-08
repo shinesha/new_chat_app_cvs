@@ -542,34 +542,50 @@ const Chat = () => {
     // };
 
 
-    const keyVaultName = "keyVaultOpen";
-    const secretName = "shinesha";
-    const keyVaultUrl = "https://keyvaultopen.vault.azure.net";
-
-
-    const onViewSource = async (citation: Citation) => {
+    const onViewSource = (citation: Citation) => {
         try {
             if (citation.url) {
-                const credential = new DefaultAzureCredential();
-                const secretClient = new SecretClient(keyVaultUrl, credential);
+                // Append the key "123" as a query parameter named "myKey"
+                const urlWithKey = `${citation.url}?myKey=123`;
     
-                // Retrieve the secret from Key Vault
-                const secret = await secretClient.getSecret(secretName);
-    
-                // Log the retrieved secret value
-                console.log("Retrieved Secret Value:", secret.value);
-    
-                // Append the secret value to the URL
-                const urlWithKey = `${citation.url}?${secret.value}`;
-                
                 // Open the URL in a new window
                 window.open(urlWithKey, "_blank");
             }
-        } catch (error: unknown) {
-            console.error("Error retrieving secret from Key Vault:", error);
+        } catch (error) {
+            console.error("Error:", error);
         }
-        
     };
+    
+
+
+    // const keyVaultName = "keyVaultOpen";
+    // const secretName = "shinesha";
+    // const keyVaultUrl = "https://keyvaultopen.vault.azure.net";
+
+
+    // const onViewSource = async (citation: Citation) => {
+    //     try {
+    //         if (citation.url) {
+    //             const credential = new DefaultAzureCredential();
+    //             const secretClient = new SecretClient(keyVaultUrl, credential);
+    
+    //             // Retrieve the secret from Key Vault
+    //             const secret = await secretClient.getSecret(secretName);
+    
+    //             // Log the retrieved secret value
+    //             console.log("Retrieved Secret Value:", secret.value);
+    
+    //             // Append the secret value to the URL
+    //             const urlWithKey = `${citation.url}?${secret.value}`;
+                
+    //             // Open the URL in a new window
+    //             window.open(urlWithKey, "_blank");
+    //         }
+    //     } catch (error: unknown) {
+    //         console.error("Error retrieving secret from Key Vault:", error);
+    //     }
+        
+    // };
     
 
 
