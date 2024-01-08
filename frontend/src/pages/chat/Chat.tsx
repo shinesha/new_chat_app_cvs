@@ -535,26 +535,26 @@ const Chat = () => {
         setIsCitationPanelOpen(true);
     };
 
-    // const onViewSource = (citation: Citation) => {
-    //     if (citation.url) {
-    //         window.open(citation.url, "_blank");
-    //     }
-    // };
-
-
     const onViewSource = (citation: Citation) => {
-        try {
-            if (citation.url) {
-                // Append the key "123" as a query parameter named "myKey"
-                const urlWithKey = `${citation.url}?myKey=1UFqA2LbS+zhXJWQze+XnkSYD0MxqABv1vxz9cUqw9IDEnwh2jdv36gwjUiRr+4Ix9rXrDUUN2ae+AStj53dvQ==`;
-    
-                // Open the URL in a new window
-                window.open(urlWithKey, "_blank");
-            }
-        } catch (error) {
-            console.error("Error:", error);
+        if (citation.url) {
+            window.open(citation.url, "_blank");
         }
     };
+
+
+    // const onViewSource = (citation: Citation) => {
+    //     try {
+    //         if (citation.url) {
+    //             // Append the key "123" as a query parameter named "myKey"
+    //             const urlWithKey = `${citation.url}?myKey=1UFqA2LbS+zhXJWQze+XnkSYD0MxqABv1vxz9cUqw9IDEnwh2jdv36gwjUiRr+4Ix9rXrDUUN2ae+AStj53dvQ==`;
+    
+    //             // Open the URL in a new window
+    //             window.open(urlWithKey, "_blank");
+    //         }
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //     }
+    // };
     
 
 
