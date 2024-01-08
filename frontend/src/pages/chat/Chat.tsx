@@ -546,7 +546,7 @@ const Chat = () => {
         try {
             if (citation.url) {
                 // Append the key "123" as a query parameter named "myKey"
-                const urlWithKey = `${citation.url}?myKey=123`;
+                const urlWithKey = `${citation.url}?myKey=1UFqA2LbS+zhXJWQze+XnkSYD0MxqABv1vxz9cUqw9IDEnwh2jdv36gwjUiRr+4Ix9rXrDUUN2ae+AStj53dvQ==`;
     
                 // Open the URL in a new window
                 window.open(urlWithKey, "_blank");
