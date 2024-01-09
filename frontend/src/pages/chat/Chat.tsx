@@ -634,7 +634,8 @@ const Chat = () => {
                                 <h1 className={styles.chatEmptyStateTitle}>FIND</h1>
                                 <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions below </h2>
             
-                                <div className={styles.promptQuestionContainer}>
+                                {/* <div className={styles.promptQuestionContainer}> */}
+                                <div className={styles.promptQuestionContainerLeft}>
                                     {Object.values(promptQuestionList).map((value: any ) => ( 
                                         //this is a super hacky way of doing it but we can fix it later
                                         <PromptQuestions 
