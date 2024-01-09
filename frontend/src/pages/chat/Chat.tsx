@@ -635,8 +635,7 @@ const Chat = () => {
                                 <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions below </h2>
             
                                 {/* <div className={styles.promptQuestionContainer}> */}
-                                <div className={styles.promptQuestionContainerLeft}>
-                                    {Object.values(promptQuestionList).map((value: any ) => ( 
+                                    {/* {Object.values(promptQuestionList).map((value: any ) => ( 
                                         //this is a super hacky way of doing it but we can fix it later
                                         <PromptQuestions 
                                             question={value[Math.floor(Math.random()*value.length)]}
@@ -647,7 +646,21 @@ const Chat = () => {
                                         />
                                     ))
                                     }
-                                </div>
+                                </div> */}
+                                  <div className={styles.promptQuestionContainerLeft}>
+                                {Object.values(promptQuestionList).map((value: any, index: number) => ( 
+                                <PromptQuestions 
+                                    key={index}
+                                    question={value[Math.floor(Math.random()*value.length)]}
+                                    onSend={(question, id) => {
+                                        appStateContext?.state.isCosmosDBAvailable?.cosmosDB
+                                            ? makeApiRequestWithCosmosDB(question, id)
+                                            : makeApiRequestWithoutCosmosDB(question, id)
+                                    }}
+                                    conversationId={appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined}
+                                />
+                            ))}
+</div>
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px"}} role="log">

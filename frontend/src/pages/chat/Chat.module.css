@@ -33,6 +33,15 @@
     align-items: flex-start;
 }
 
+/* Add margin-bottom to create space between buttons */
+.promptQuestionContainerLeft > * {
+    margin-bottom: 10px; /* Adjust the value based on your desired spacing */
+}
+
+
+
+
+
 
 .chatEmptyState {
     flex-grow: 1;
