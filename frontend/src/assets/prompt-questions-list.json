@@ -6,7 +6,7 @@
 "Please explain data architecture and data architecture across different businesses?",
 "How do different businesses govern, protect and secure their data?",
 "What challenges are their for different businesses to realise their data driven objectives?"],
-    "topic2":["Data Pipeline Design: How do you design a robust data pipeline for handling large-scale, diverse datasets, for unstructured, structured and semi structured, ensuring both efficiency and reliability?",
+    "topic2":["How do you design a robust data pipeline for handling large-scale, diverse datasets, for unstructured, structured and semi structured, ensuring both efficiency and reliability?",
 "Can you explain how tools like Apache Hadoop and Apache Spark differ in handling big data, and when each should be used?",
 "Discuss the advantages and challenges of using cloud platforms like AWS, Azure, or Google Cloud for data engineering tasks?",
 "What are the best practices for setting up a real-time data processing system, and how do tools like Apache Kafka or Stream Analytics fit into this?",
