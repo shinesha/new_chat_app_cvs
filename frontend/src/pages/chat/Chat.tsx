@@ -647,6 +647,7 @@ const Chat = () => {
                                     ))
                                     }
                                 </div> */}
+                                {/* test */}
                                   <div className={styles.promptQuestionContainerLeft}>
                                 {Object.values(promptQuestionList).map((value: any, index: number) => ( 
                                 <PromptQuestions 
