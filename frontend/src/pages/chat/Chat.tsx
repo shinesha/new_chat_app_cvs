@@ -647,7 +647,7 @@ const Chat = () => {
                                     ))
                                     }
                                 </div> */}
-                                {/* test */}
+                                
                               
                                
                                   <div className={styles.promptQuestionContainerLeft}>
