@@ -632,7 +632,7 @@ const Chat = () => {
                                     aria-hidden="true"
                                 />
                                 <h1 className={styles.chatEmptyStateTitle}>FIND</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions below </h2>
+                                <h2 className={styles.chatEmptyStateSubtitle}>Struggling with what to ask? Select one of the prompt questions to the left </h2>
             
                                 {/* <div className={styles.promptQuestionContainer}> */}
                                     {/* {Object.values(promptQuestionList).map((value: any ) => ( 
@@ -649,7 +649,7 @@ const Chat = () => {
                                 </div> */}
                                 {/* test */}
                                 {/* test */}
-                                {/* test */}
+                               
                                   <div className={styles.promptQuestionContainerLeft}>
                                 {Object.values(promptQuestionList).map((value: any, index: number) => ( 
                                 <PromptQuestions 
