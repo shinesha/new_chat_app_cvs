@@ -8,6 +8,19 @@
     text-align: center;
 }
 
+
+.buttonsss {
+    background: #FFFFFF;
+    box-shadow: 0 8px 16px #00000024, 0 0 2px #0000001f;
+    border: none;
+    border-radius: 8px;
+    border: 2px solid #E60012; /* Change the border color */
+    width: 320px;
+    height: 95px;
+    text-align: center;
+}
+
+
 .buttonsss:hover{
     cursor: pointer;
 }
