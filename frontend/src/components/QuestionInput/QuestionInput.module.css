@@ -45,7 +45,7 @@
     left: 0%;
     bottom: 0%;
     /* background: radial-gradient(106.04% 106.06% at 100.1% 90.19%,#E60012 33.63%,#E60012 100%); */
-    background: (135deg, #f34079 40%, #fc894d);
+    background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
