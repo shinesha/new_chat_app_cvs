@@ -650,6 +650,8 @@ const Chat = () => {
                                 
                            {/* test */}
 
+                           {/* how are you */}
+
                              
                                
                                   <div className={styles.promptQuestionContainerLeft}>
