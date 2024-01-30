@@ -546,7 +546,8 @@ const Chat = () => {
         try {
             if (citation.url) {
                 // Append the key "123" as a query parameter named "myKey"
-                const urlWithKey = `${citation.url}?sp=r&st=2024-01-08T13:36:21Z&se=2034-08-01T20:36:21Z&spr=https&sv=2022-11-02&sr=c&sig=7QFeyANbRkuQRAzk4yqKm%2FwfMHr0Kk%2BVXKzFVIM8Yss%3D`;
+                const urlWithKey = `${citation.url}?sp=r&st=2024-01-30T16:01:57Z&se=2024-01-31T00:01:57Z&spr=https&sv=2022-11-02&sr=c&sig=RO71MwrhlshU5Y85MOhQKHKAa0eKlmm79TK8Po5mtws%3D`;
+
     
                 // Open the URL in a new window
                 window.open(urlWithKey, "_blank");
