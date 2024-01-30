@@ -559,7 +559,7 @@ const Chat = () => {
         }
     };
     
-
+//terminal
 
     // const keyVaultName = "keyVaultOpen";
     // const secretName = "shinesha";
