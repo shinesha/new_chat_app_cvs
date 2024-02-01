@@ -1,11 +1,12 @@
 {
     "topic1":[
-"DATA STRATEGY: What information do we have about data strategy across different businesses?",
-"DATA STRATEGY: How does data allow businesses to realise their data driven outcomes?",
-"DATA STRATEGY: What do we know about data maturity methodology and maturity across different businesses?",
-"DATA STRATEGY: Please explain data architecture across different businesses?",
-"DATA STRATEGY: How do different businesses govern, protect and secure their data?",
-"DATA STRATEGY: What challenges are their for different businesses to realise their data driven objectives?"],
+        "DATA STRATEGY: Find candidates with expertise in data strategy.",
+        "DATA STRATEGY: Locate candidates proficient in data governance and compliance",
+        "DATA STRATEGY: Find individuals experienced in implementing master data management",
+        "DATA STRATEGY: Identify professionals with expertise in data quality management",
+        "DATA STRATEGY: Find professionals with a track record of leading successful data strategy initiatives",
+        "DATA STRATEGY: Search for individuals with a leadership role in data governance",
+        "DATA STRATEGY: Search for people with skills in data maturity"],
     "topic2":["DATA ENGINEERING: How do you design a robust data pipeline for handling large-scale unstructured, structured and semi structured datasets?",
 "DATA ENGINEERING: Can you explain how tools like Apache Hadoop and Apache Spark differ in handling big data, and when each should be used?",
 "DATA ENGINEERING: Discuss the advantages and challenges of using cloud platforms like AWS, Azure, or Google Cloud for data engineering tasks?",
@@ -16,59 +17,20 @@
 "DATA ENGINEERING: How can data pipelines be productionized to efficiently feed data into machine learning models and AI services?",
 "DATA ENGINEERING: What techniques and tools are most effective for ensuring and maintaining high data quality throughout the data lifecycle?",
 "DATA ENGINEERING: Explain the best practices for data architecture using the medallion architecture for data engineering?" ],
-"topic3":["DATA ARCHITECTURE: What are the primary business goals and objectives that the Data Architecture should support?", 
-"DATA ARCHITECTURE: How do organisations define success for their Data Architecture projects?", 
-"DATA ARCHITECTURE: What are the primary sources of data for different organisations?", 
-"DATA ARCHITECTURE: Please tell me about data quality requirements and standards at different organisations?", 
-"DATA ARCHITECTURE: Please tell me about data governance policies at different organisations?", 
-"DATA ARCHITECTURE: Please tell me about security and privacy requirements data at different organisations?",
-"DATA ARCHITECTURE: How do different businesses handle sensitive information?", 
-"DATA ARCHITECTURE: Please tell me about different organisations existing systems and applications and their integration with the Data Architecture?",
-"DATA ARCHITECTURE: Please tell me about specific integration protocols or standards at different organisations?"],
-    "topic4": ["DATA SCIENCE: How does each organization identify and prioritize potential data science projects?",
-    "DATA SCIENCE: What criteria are used to determine the feasibility and potential impact of a data science project?",
-    
-    "DATA SCIENCE: How do different organizations source and collect the data needed for their projects?",
-    "DATA SCIENCE: What challenges are commonly faced during the data collection and ingestion phase?",
-    
-    "DATA SCIENCE: What methodologies and tools are preferred by organizations for cleaning and preprocessing raw data?",
-    "DATA SCIENCE: How do organizations handle missing or noisy data in their data science life cycle?",
-    
-    "DATA SCIENCE: How is exploratory data analysis conducted across different organizations?",
-    "What visualization techniques and statistical methods are commonly employed during EDA?",
-    
-    "DATA SCIENCE: How do organizations approach feature engineering to enhance model performance?",
-    "DATA SCIENCE: Are there specific domain-driven features that organizations prioritize in their projects?",
-    
-    "DATA SCIENCE: What criteria do organizations use to select machine learning models for their projects?",
-    "DATA SCIENCE: How are models fine-tuned and optimized for specific use cases within different organizations?",
-    
-    "DATA SCIENCE: How do organizations assess the performance of machine learning models during validation?",
-    "DATA SCIENCE: What validation techniques and metrics are commonly used to ensure model reliability?",
-    
-    "DATA SCIENCE: What are the preferred methods for deploying machine learning models in different organizations?",
-    "DATA SCIENCE: How do organizations address challenges related to scalability and integration during deployment?",
-    
-    "DATA SCIENCE: How do organizations implement ongoing monitoring for deployed models?",
-    "DATA SCIENCE: What measures are taken to address model degradation and ensure continuous performance?",
-    
-    "DATA SCIENCE: How do organizations incorporate feedback from model users and stakeholders into the data science life cycle?",
-    "DATA SCIENCE: Are there specific strategies for continuous improvement based on user feedback?",
-    
-    "DATA SCIENCE: How do organizations address ethical considerations and biases throughout the data science life cycle?",
-    "DATA SCIENCE: What steps are taken to ensure fairness and transparency in model development and deployment?",
-    
-    "DATA SCIENCE: How do organizations document their data science projects, and what knowledge-sharing practices are in place?",
-    "DATA SCIENCE: How is knowledge transfer facilitated among team members and across different projects?",
-    
-    "DATA SCIENCE: How are cross-functional teams structured to collaborate effectively in the data science life cycle?",
-    "DATA SCIENCE: What roles and expertise are represented within these teams in different organizations?",
-    
-    "DATA SCIENCE: How do organizations allocate resources and budget for their data science initiatives?",
-    "DATA SCIENCE: Are there common challenges or considerations related to resource allocation?",
-    
-    "DATA SCIENCE: How closely aligned are data science projects with the overall business strategy of different organizations?",
-    "DATA SCIENCE: How is the value of data science projects measured in the context of organizational goals?"
+"topic3":["DATA ARCHITECTURE: Find CVs of individuals with expertise in data architecture",
+"DATA ARCHITECTURE: Identify candidates skilled in designing and implementing data architecture solutions",
+"DATA ARCHITECTURE: Search for candidates experienced in data modeling for efficient storage and retrieval",
+"DATA ARCHITECTURE: Locate professionals skilled in designing relational and NoSQL data models",
+"DATA ARCHITECTURE: Identify candidates with expertise in designing and managing databases",
+"DATA ARCHITECTURE: Locate CVs of individuals with experience in designing enterprise-level data solutions",
+"DATA ARCHITECTURE: Identify candidates skilled in creating scalable and maintainable data architectures",
+"DATA ARCHITECTURE: Locate professionals skilled in working with AWS, Azure, or Google Cloud for data architecture tasks",
+"DATA ARCHITECTURE: Search for professionals skilled in building data lakes and data warehouses"],
+    "topic4": ["DATA SCIENCE: Find CVs of individuals with expertise in data science",
+    "DATA SCIENCE: Identify candidates skilled in data analysis, machine learning, and statistical modeling",
+    "DATA SCIENCE: Search for candidates proficient in Python, R, or other data science programming languages",
+    "DATA SCIENCE: Find individuals experienced in using data visualization tools like Tableau or Power BI",
+    "DATA SCIENCE: Identify professionals with expertise in natural language processing (NLP) or computer vision, Machine Learning, and AI"
     ],
     "topic5": ["A Example question that you could ask the AI tool"],
     "topic6": ["A Example question that you could ask the AI tool"]
